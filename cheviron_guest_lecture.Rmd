@@ -1,0 +1,355 @@
+---
+title: "New Guinea as a laboratory for avian evolution"
+author: Ethan B. Linck
+date: |
+  | Ornithology guest lecture
+  | University of Wyoming Department of Zoology & Physiology
+  | @ethanblinck
+header-includes:
+- \addtobeamertemplate{title page}{\centering \includegraphics[width=1\textwidth]{/Users/ethanlinck/Dropbox/misc_talks/images/banner_ngbirds.png}}{}
+output: beamer_presentation
+fontsize: 11pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Weird Bird 
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/satinbird.jpg}
+\end{figure}
+
+(Yellow-breasted satinbird, 625-2000m)  
+
+## Uniqueness
+
+"Physicists and chemists often have genuine difficulty in understanding the biologist's stress of the unique...individuality [is] so characteristic of the organic world, where all individuals are unique; all stages in the life cycle are unique; all populations are unique; all species and higher categories are unique; all interindividual contacts are unique; all natural associations of species are unique; and all evolutionary events are unique" (Mayr 1961, "Cause and Effect in Biology", *Science*)
+
+# Why is New Guinea's avifauna unique, and why does it matter?
+
+## Outline
+
+- Overview of New Guinea's avian diversity 
+- Geography
+- Speciation
+- Macroevolution 
+- Conservation
+
+# Overview of New Guinea's avian diversity 
+
+# $Q_1$: How do we quantify diversity?
+
+## Species and phylogenetic richness
+
+\begin{figure}
+\includegraphics[width = 0.5\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/rabp.jpeg}
+\end{figure}
+
+- 943 species regionally (Gregory 2009)
+- 789 from the mainland (>5% of global total)
+- 2 (or more?) species undescribed
+- 98 families
+- 39 birds-of-paradise
+
+(https://macaulaylibrary.org/asset/225784281)
+
+## Endemism
+
+\begin{figure}
+\includegraphics[width = 0.5\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/wapb.jpeg}
+\end{figure}
+
+- 406 mainland endemics (>50%)
+- 7 endemic families (Melanocharitidae, Paramythiidae, Cnemophilidae, Rhagologidae Ifritidae, Eulacestomidae, Melampittidae)
+- 75 endemic species in Bismarcks / Admiralties / Bougainville
+
+(https://macaulaylibrary.org/asset/184660681)
+
+## Ecological diversity
+
+\begin{figure}
+\includegraphics[width = 0.5\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/noca.jpeg}
+\end{figure}
+
+- Cassowaries to sunbirds to harpy eagles
+- Coastal mudflats to swamp forest to savannah to glacier line (>4500m)
+- More frugivores than in the American tropics
+- Elaborate plumage possibly a result of reduced pressure from carnivores
+
+(https://macaulaylibrary.org/asset/90807631)
+
+## Importance to evolutionary thought
+
+\begin{figure}
+\includegraphics[width = 0.25\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/mayr.jpeg}
+\end{figure}
+
+- Ernst Mayr (Modern Synthesis: biological species concept, allopatric speciation)
+- Jared Diamond (*Guns, Germs, and Steel*, but also work on community assembly rules, speciation, biogeography)
+- E.O. Wilson (ants, but taxon cycle, Theory of Island Biogeography)
+
+(https://doi.org/10.1038/nature03435)
+
+# Geography & Geology
+
+# $Q_2$: What aspects of geography and earth history are associated with diversity?
+
+## Geography  
+
+\begin{figure}  
+\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/position.png}
+\end{figure}  
+(wikipedia)
+
+## Geography  
+
+\begin{figure}  
+\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/newguinea_topo.png} 
+\end{figure}  
+
+(wikipedia)
+
+## Geography  
+
+- High mountains with east-west orientation  
+- "Sky Islands"  
+- Large lowland basins  
+- Major river systems
+- Shallow and deep seas  
+- Off-shore islands (land-bridge and oceanic)  
+
+## Tectonic History
+
+\begin{figure}  
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/tectonics.png}
+\end{figure}  
+
+(Baldwin, Fitzgerald, & Webb 2012)  
+
+## Tectonic History
+
+- Gondwanan isolation  
+- Current position at geographic crossroads   
+- Collision to form mountain ranges  
+- Movement to warmer climates during last ice age  
+- "[A]rguably one of the most tectonically complex regions of the world...its tectonic
+evolution has global significance" (Baldwin, Fitzgerald, & Webb 2012) 
+
+## 19 Major Ecoregions
+
+\begin{figure}  
+\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/ecoregions.jpeg}
+\end{figure}  
+
+([one earth](https://www.oneearth.org/bioregions/new-guinea-surrounding-islands-au13/))
+
+# Speciation
+
+# $Q_3$: How might geography influence speciation?
+
+## Allopatric speciation in the highlands
+
+\begin{figure}  
+\includegraphics[width = \linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/pujolar.png}
+\end{figure}  
+
+(Pujolar et al. 2022)
+
+## Parapatric speciation in the highlands
+
+\begin{figure}  
+\includegraphics[width = \linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/lincketal.png}
+\end{figure}  
+
+(Linck, Freeman, & Dumbacher 2020)
+
+## Allopatric speciation in the lowlands
+
+\begin{figure}  
+\includegraphics[width = \linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/deiner.png}
+\end{figure}  
+
+(Denier et al. 2011)
+
+## Diversification on islands
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+library(calibrate)
+library(maptools)
+
+area=c(262.5,329,37,1,0.46,0.53,0.1,0.001,0.06,0.11,0.92)
+divergence=c(0.0327,0.0119,0.0158,0.0119,0.0034,0.0034,0.0062,0.0062,0.0034,0.0034,0.0052)
+names=c("Rossel","Long","Nissan","Nauna","Hummock","Haszard","Eyon","Ginetu","Noapoi","Duchess","Panamoti")
+islands=data.frame(area=area,divergence=divergence)
+plot(log(area), log(divergence), pch=18, xlab="Island area (km^2)(log scale)", ylab="Genetic distance from nearest neighbor (log scale)", cex.main=1.5, cex.lab=1.25, main="Genetic distance from nearest neighbor \n as a function of home island area")
+trend=lm(log(divergence) ~ log(area), data=islands)
+pointLabel(log(area), log(divergence), labels = names, cex = 1,
+           allowSmallOverlap = FALSE)
+abline(trend)
+modsum=summary(trend)
+r2=modsum$adj.r.squared
+my.p = modsum$coefficients[2,4]
+mylabel = bquote(italic(R)^2 == .(format(r2, digits = 3)))
+text(x = 19, y = 2.5, labels = mylabel)
+rp = vector('expression',2)
+rp[1] = substitute(expression(italic(R)^2 == MYVALUE), 
+                   list(MYVALUE = format(r2,dig=3)))[2]
+rp[2] = substitute(expression(italic(p) == MYOTHERVALUE), 
+                   list(MYOTHERVALUE = format(my.p, digits = 2)))[2]
+legend('topleft', legend = rp, bty = 'n')
+
+# island height by divergence
+# height=c(838,1304,45,129,15,10,20,1,30,40,20)
+# divergence=c(0.0327,0.0119,0.0158,0.0119,0.0034,0.0034,0.0062,0.0062,0.0034,0.0034,0.0052)
+# islands2=data.frame(height=height,divergence=divergence)
+# plot(log(height), log(divergence), pch=18, xlab="Island height (m)(log scale)", ylab="Genetic distance from nearest neighbor (log scale)", cex.main=1, main="Genetic distance from nearest neighbor \n as a function of home island height")
+# trend2=lm(log(divergence) ~ log(height), data=islands2)
+# pointLabel(log(height), log(divergence), labels = names, cex = 0.7,
+#           allowSmallOverlap = FALSE)
+# abline(trend2)
+# modsum2=summary(trend2) 
+# r2.2=modsum2$adj.r.squared
+# my.p.2=modsum2$coefficients[2,4]
+# mylabel2 = bquote(italic(R)^2 == .(format(r2.2, digits = 3)))
+# text(x = 19, y = 2.5, labels = mylabel2)
+# rp2 = vector('expression',2)
+# rp2[1] = substitute(expression(italic(R)^2 == MYVALUE), 
+#                   list(MYVALUE = format(r2.2,dig=3)))[2]
+# rp2[2] = substitute(expression(italic(p) == MYOTHERVALUE), 
+#                   list(MYOTHERVALUE = format(my.p.2, digits = 2)))[2]
+# legend('topleft', legend = rp2, bty = 'n')
+
+# distance=c(185,360,540,360,1.5,1.5,27,27,80,80,85)
+# divergence=c(0.0327,0.0119,0.0158,0.0119,0.0034,0.0034,0.0062,0.0062,0.0034,0.0034,0.0052)
+# islands3=data.frame(distance=distance,divergence=divergence)
+# plot(log(distance), log(divergence), pch=18, xlab="Distance from nearest neighbor (km)(log scale)", ylab="Genetic distance from nearest neighbor (log scale)", cex.main=1, main="Genetic distance from nearest neighbor \n as a function of distance between islands")
+# trend3=lm(log(divergence) ~ log(distance), data=islands3)
+# pointLabel(log(distance), log(divergence), labels = names, cex = 0.7,
+#           allowSmallOverlap = FALSE)
+#  abline(trend3)
+# modsum3=summary(trend3) 
+# r2.3=modsum3$adj.r.squared
+# my.p.3=modsum3$coefficients[2,4]
+# mylabel3 = bquote(italic(R)^2 == .(format(r2.3, digits = 3)))
+# text(x = 19, y = 2.5, labels = mylabel3)
+# rp3 = vector('expression',2)
+# rp3[1] = substitute(expression(italic(R)^2 == MYVALUE), 
+#                    list(MYVALUE = format(r2.3,dig=3)))[2]
+# rp3[2] = substitute(expression(italic(p) == MYOTHERVALUE), 
+#                    list(MYOTHERVALUE = format(my.p.3, digits = 2)))[2]
+#  legend('topleft', legend = rp3, bty = 'n')
+```
+
+(Linck et al. 2016)
+
+# Macroevolution
+
+# $Q_4$: Which avifaunas are most similar to New Guinea?   
+
+## Australasian bird diversity 
+
+\begin{figure}  
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/marki.png}
+\end{figure}  
+
+(Marki et al. 2017)
+
+## The origin of songbirds
+
+\begin{figure}  
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/jonsson.png}
+\end{figure}  
+
+(Jønsson et al. 2011)
+
+## Avian diversity in Oceania
+
+\begin{figure}  
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/andersen.png}
+\end{figure}  
+
+(Andersen et al. 2018)  
+
+# Biodiversity Conservation 
+
+## Logging and Oil Palm
+
+\begin{figure}  
+\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/logging.jpg}
+\end{figure}  
+
+## Climate Change 
+
+\begin{figure}  
+\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/biocultural.png}
+\end{figure}  
+
+(Cámara-Leret et al. 2019)
+
+## Climate Change 
+
+\begin{figure}  
+\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/freemanfreeman.png}
+\end{figure}  
+
+(Freeman & Class Freeman 2014)
+
+## Cultural significance
+
+\begin{figure}  
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/andersen.png}
+\end{figure}  
+
+## Hunting
+
+\begin{figure}  
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/nugl.png}
+\end{figure} 
+
+## 45,000+ Years of Habitation  
+
+\begin{figure}  
+\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/habitation.jpeg}
+\end{figure}  
+
+## Indigenous Land Tenure & Conservation  
+
+\begin{figure}  
+\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/pwm.jpeg}
+\end{figure}  
+
+## Why New Guinea birds?
+
+- New Guinea's bird diversity is globally important
+- It showcases the speciation process at small scales
+- It has played a role in the global trajectory of avian evolution
+- It has a complex, pressing conservation future
+
+## More weird birds
+
+\begin{figure}  
+\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/robin.jpeg}
+\end{figure}  
+(garnet robin)
+
+## More weird birds
+
+\begin{figure}  
+\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/dove.jpeg}
+\end{figure}  
+(mountain fruit dove)
+
+## Thanks + resources
+
+- People: Stanley Jacobs, Bulisa Iova, Georgia Kapui, Salape Tulai, Jack Dumbacher, Ben Freeman, Kate Schimel, Bruce Beehler, Lisa Dabek
+- Places: [The New Guinea Binatang Research Center](http://baloun.entu.cas.cz/png/), University of Washington, California Academy of Sciences
+- Slides & references: https://github.com/elinck/misc_talks/ 
+
+
+
+
+
+
+
