@@ -40,13 +40,13 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Integrative population genetics  
 
 \begin{figure}
-\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/conceptual_figure_1.png}
+\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/overview1.png}
 \end{figure}
 
 ## Integrative population genetics
 
 \begin{figure}
-\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/conceptual_figure_2.png}
+\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/overview2.png}
 \end{figure} 
 
 # How does climate fidelity structure genetic variation, and why do we care? 
@@ -354,7 +354,7 @@ p
 
 ## Acknowledgements:  
 
-- **Collaborators**: Daniel Cadena, Cameron Ghalambor, Ben Freeman, Gavin Jones, Laura Céspedes
+- **Collaborators**: Daniel Cadena, Cameron Ghalambor, Ben Freeman, Laura Céspedes
 
 - **Funding**: NSF PRFB  
 
@@ -391,26 +391,27 @@ p
 
 # $H_{1}$: Climate fidelity is negatively correlated with evolutionary potential
 
+## Proxies for evolutionary potential     
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/evolpotential.png}  
+\end{figure}  
+
+(Forester et al. 2022 *Front. Ecol. Environ.*)  
+
 ## Testing for correlations  
 
 \begin{figure}
 \includegraphics[width = 0.75\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/climate_fidelity_conceptual.png}
 \end{figure}  
 
-## Western forests host niches under threat
+## Can Western Flycatchers adapt to a hotter west?   
 
 \begin{figure}
 \includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/corfly_trends.png}
 \end{figure}
 
 (eBird) 
-
-## Megafires as evolutionary experiment  
-
-\begin{figure}
-\includegraphics[width = 0.7\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/mca.jpg}
-\end{figure}  
-(Higuera et al. 2021 *PNAS*)  
 
 ## Outline  
 
@@ -421,6 +422,12 @@ p
 - $Q_{3}$: What can climate fidelity tell us about evolutionary potential?
 
 - **$Q_{4}$: What is the role of evolutionary thinking in conservation biology?**  
+
+## Linck Lab @ Montana State University, Fall 2023
+
+\begin{figure}
+\includegraphics[width = 0.7\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/lablogo.png}  
+\end{figure}  
 
 ## Evolutionary biology can tell us about **evolution**
 
@@ -438,12 +445,6 @@ p
 
 \begin{figure}
 \includegraphics[width = 0.7\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/evol_values.png}  
-\end{figure}  
-
-## Linck Lab @ Montana State University, Fall 2023
-
-\begin{figure}
-\includegraphics[width = 0.7\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/lablogo.png}  
 \end{figure}  
 
 ## Resources 
@@ -465,7 +466,7 @@ p
 - Bay et al. 2018. *Science*, 359(6371), 83-86. 
 - Linck et al. 2021. *Biology Letters*, 17(10), 20210363. 
 - Pujolar et al. 2022. *Nature Communications*, 13(1), 268.
-- Higuera et al. 2021. *PNAS*, 118(25), e2103135118.  
+- Forester et al. 2022. *Front. Ecol. Environ.* 20(9), 507-515. 
 
 ## Thanks!
 
