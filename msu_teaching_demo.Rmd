@@ -1,0 +1,284 @@
+---
+title: "Hardy-Weinberg Equilibrium"  
+author: Ethan B. Linck 
+date: |
+  | MSU Teaching Demonstration
+output: beamer_presentation
+fontsize: 13.5pt  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Ferruginous Hawks
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/feha-01.png}
+\end{figure}  
+
+## Ferruginous Hawks
+\begin{figure}
+\includegraphics[width = 0.7\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/feharange.png}
+\end{figure}  
+
+## Ferruginous Hawks
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/feha2-01.png}
+\end{figure}  
+
+# Today's Question: How can we figure out if the dark morph Ferruginous Hawks eventually become more common than light morph Ferruginous Hawks?  
+
+# Today's Answer: Hardy-Weinberg Equilibrium  
+
+## Learning Outcomes: Hardy-Weinberg Equilibrium  
+
+1) Calculate expected genotype frequencies from observed allele frequencies, random mating, and no evolution  
+
+2) Calculate observed allele frequencies based on observed genotype frequencies
+
+3) Use Hardy-Weinberg Equilibrium as a null model to evaluate whether interesting biology is happening  
+
+## Key Vocab
+
+- *locus*: a location on a chromosome
+- *allele*: one of two or more variants at a locus
+- *genotype*: the alleles an individual carries
+- *diploid*: containing two sets of chromosomes (1 per parent)
+- *null hypothesis*: what we expect in the absence of an effect  
+- *evolution*: a change in allele frequencies over time  
+
+# $Q_{1}$: How do we predict the possible genotypes of offspring from a particular mating event (Aa x aa)?  
+
+# $A_{1}$: Punnett's Squares  
+
+## Punnett's Squares  
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/punnet1-01.png}
+\end{figure}  
+
+## Punnett's Squares  
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/punnet2-01.png}
+\end{figure}  
+
+## Punnett's Squares  
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/punnet3-01.png}
+\end{figure}  
+
+## Punnett's Squares  
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/punnet4-01.png}
+\end{figure}  
+
+## Punnett's Squares  
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/punnet5-01.png}
+\end{figure}  
+
+## Punnett's Squares  
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/punnet6-01.png}
+\end{figure}  
+
+## Punnett's Squares  
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/punnet7-01.png}
+\end{figure}  
+
+# $Q_{2}$ How do we predict the expected *frequency* of genotypes from a generation of random mating events (f(A) = *p*, f(a) = *q*)?    
+
+## Population Punnet's Squares 
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/poppun1-01.png}
+\end{figure}  
+
+## Population Punnet's Squares 
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/poppun2-01.png}
+\end{figure}  
+
+## Population Punnet's Squares 
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/poppun3-01.png}
+\end{figure}  
+
+## Population Punnet's Squares 
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/poppun4-01.png}
+\end{figure}  
+
+## Population Punnet's Squares 
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/poppun5-01.png}
+\end{figure}  
+
+## Population Punnet's Squares 
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/poppun6-01.png}
+\end{figure}  
+
+## Population Punnet's Squares 
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/poppun7-01.png}
+\end{figure}  
+
+# $p^2 + qp + pq + q^2 = 1$ 
+
+# $p^2 + 2pq + q^2 = 1$ 
+
+# $Q_{3}$: 5 $AA$ dark morph hawks, 10 $Aa$ dark morph hawks, and 35 $aa$ light morph hawks mate randomly and produce 120 chicks. How many will be dark morphs?
+
+# number of $A$ alleles: 2 * 5 homozygotes + 1 * 10 heterozygotes = 20   
+
+# number of $a$ alleles: 2 * 35 homozygotes + 1 * 10 heterozygote = 80   
+
+# $f(A) = 0.2$, $f(a) = 0.8$  
+
+# *p* = 0.2, *q* = 0.8  
+
+## Expected Genotype Frequencies 
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/num1-01.png}
+\end{figure}  
+
+## Expected Genotype Frequencies  
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/num2-01.png}
+\end{figure}  
+
+## Expected Genotype Frequencies  
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/num3-01.png}
+\end{figure}  
+
+## Expected Genotype Frequencies 
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/num4-01.png}
+\end{figure}  
+
+## Expected Genotype Frequencies 
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/num5-01.png}
+\end{figure}  
+
+## Expected Genotype Frequencies 
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/num6-01.png}
+\end{figure}  
+
+## Expected Genotype Frequencies 
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox//misc_talks/images/num7-01.png}
+\end{figure}  
+
+# $p^2 + qp + pq + q^2 = 1$ 
+
+## Expected Genotype Frequencies 
+
+$0.2^2 + 2(0.8*0.2) + 0.8^2 = 1$
+
+$0.04 + 0.32 + 0.64 = 1$
+
+$f(AA) = 0.04$  
+$f(Aa) = 0.32$  
+$f(aa) = 0.64$  
+ 
+## Expected Color Morphs
+
+$n(AA) = 0.04*150$ = 6 dark morph homozygotes 
+$f(Aa) = 0.32*150$ = 48 dark morph heterozygotes  
+$f(aa) = 0.64*150$ = 96 light morph homozygotes  
+
+# $Q_{3}$: 5 $AA$ dark morph hawks, 10 $Aa$ dark morph hawks, and 35 $aa$ light morph hawks mate randomly and produce 120 chicks. How many will be dark morphs?
+
+# $A_{3}$: 54 dark morph chicks!  
+
+# $Q_{4}$: Has the frequency of alelle *A* increased?  
+
+# number of $A$ alleles: 2 * 6 homozygotes + 1 * 48 heterozygotes = 60/300   
+
+# number of $a$ alleles: 2 * 96 homozygotes + 1 * 48 heterozygote = 240/300 
+
+# $f(A) = 0.2$, $f(a) = 0.8$  
+
+# $A_{4}$: The frequency of alelle *A* has stayed the same  
+
+# $Q_{5}$: Has the population evolved?  
+
+# $Q_{5}$: No!!!  
+
+## $Q_{6}$: Would your answer to $Q_{4}$ and $Q_{5}$ change if dark morph birds were under apostatic selection and had greater hunting success due to their scarcity?  
+
+1. No, because the number of offspring does not depend on the allele frequency for color.  
+
+2. No—the frequency of the alleles would be different, but it would not result in a change in frequency from one generation to the next.  
+
+3. Yes, because if dark morphs have higher fitness, then light morphs would be dominant and not recessive—therefore proportions would switch.  
+
+4. Yes, because the recessive allele for dark color would appear more often due to higher fitness.  
+
+## $Q_{7}$: Would your answer to $Q_{4}$ and $Q_{5}$ change if a mutation produced a third allele impacting color morphs?  
+
+1. Yes and no. It depends if the new allele is dominant or recessive. If recessive, then the same. If dominant, then different.
+
+2. Yes. It would decrease initial frequencies but not subsequent frequencies.  
+
+3. No—mutations add new variations in the population but don’t change existing frequencies.  
+
+4. No, because a new allele would change the frequencies of the alleles in a population.  
+
+## $Q_{8}$: Would your answer to $Q_{4}$ and $Q_{5}$ change if 60 light morph birds flew in from Alberta?  
+
+1. Yes, because originally the frequency would change, but the new frequency would stay constant with subsequent generations.  
+
+2. Yes, because the number of individuals won’t change the frequency in a population.  
+
+3. No, because the population would have more recessive alleles.  
+
+4. No, because the dark allele is still recessive and therefore ratios would be the same.  
+
+## $Q_{9}$: Would your answer to $Q_{4}$ and $Q_{5}$ change if color morphs mated preferentially?  
+
+1. No—the dark morphs would be carriers of a light morph allele, so the allele frequency would remain unchanged.  
+
+2. No—as long as dark morphs and light morphs produce the same number of offspring, allele frequencies will stay the same.  
+
+3. It depends on whether the individuals are heterozygous or homozygous, but the frequencies would still be changing.  
+
+4. Yes, since the frequency in $Q4$ was based on random outcrossing. 
+
+## $Q_{9}$: Would your answer to $Q_{4}$ and $Q_{5}$ change if by chance many more *A* alleles ended up in offspring during independent assortment than predicted?  
+
+1. Yes, because the population has not been changed.
+
+2. Yes—the randomness of sperm and egg combination is independent from this prediction.  
+
+3. No—the frequency has changed, even though it occurred by chance.  
+
+4. No, because it was just by chance. So later generations would balance out.  
+
+## Hardy-Weinberg Assumptions  
+
+1) no selection 
+2) no mutation
+3) no migration
+4) random mating
+5) no genetic drift
+
+# A null model for evolution and population genetics    
+
+# Activity: HWE Worksheet (~15 min)  
+
+
+
+
+
+
+
+
+
+
+
+
+

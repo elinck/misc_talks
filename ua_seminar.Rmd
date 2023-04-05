@@ -1,0 +1,484 @@
+---
+title: "Climate fidelity, genetic variation, and evolutionary potential"
+author: Ethan B. Linck 
+date: |
+  | University of Wyoming 
+  | Department of Zoology & Physiology
+  | @ethanblinck
+header-includes:
+- \addtobeamertemplate{title page}{\centering \includegraphics[width=0.7\textwidth]{/Users/ethanlinck/Dropbox/misc_talks/images/speciation_model.png}}{}
+output: beamer_presentation
+fontsize: 12pt  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Climate structures biodiversity
+
+\begin{figure}
+\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/lifezones.jpeg}  
+\end{figure}  
+(Merriam 1890)  
+
+## Climate structures biodiversity
+
+\begin{figure}
+\includegraphics[width = 0.95\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/climate_chiricahuas.png}  
+\end{figure}  
+(iNaturalist obs. 128348716, 30912579, 31832514, 33570367)  
+
+# Climate fidelity: the tendency of a species or population to track its climatic niche through time (Wang et al. 2023 *PNAS*) 
+
+## Climate fidelity
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/climate_fidelity.png}
+\end{figure}  
+
+## Integrative population genetics  
+
+\begin{figure}
+\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/conceptual_figure_1.png}
+\end{figure}
+
+## Integrative population genetics
+
+\begin{figure}
+\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/conceptual_figure_2.png}
+\end{figure} 
+
+# How does climate fidelity structure genetic variation, and why do we care? 
+
+## Outline  
+
+- $Q_{1}$: How has climate fidelity shaped genetic variation in Western *Empidonax* flycatchers? 
+
+- $Q_{2}$: What can we learn from adding climatic complexity to population genetic models?  
+
+- $Q_{3}$: What can climate fidelity tell us about evolutionary potential?  
+
+- $Q_{4}$: What is the role of evolutionary thinking in conservation biology?  
+
+## Outline  
+
+- **$Q_{1}$: How has climate fidelity shaped genetic variation in Western *Empidonax* flycatchers?**   
+
+- $Q_{2}$: What can we learn from adding climatic complexity to population genetic models do?  
+
+- $Q_{3}$: What can climate fidelity tell us about evolutionary potential? 
+
+- $Q_{4}$: What is the role of evolutionary thinking in conservation biology?  
+
+## Acknowledgements:
+
+- **Collaborators**: Kevin Epperly, Paul van Els, Garth Spellman, Rob Bryson, John McCormack, **Ricardo Canales-del-Castillo**, John Klicka, **Alex Hopping**
+
+- **Funding**: Department of Defense NDSEG Fellowship  
+
+## Climatic cycles shape biodiversity
+
+\begin{figure}
+\includegraphics[width =
+0.65\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/rand.png}
+\end{figure}
+(Rand 1948 *Evolution*)
+
+## Climatic cycles shape biodiversity
+
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/esus_glacial.png}
+\end{figure} 
+(Rull 2008 *Molecular Ecology*)
+
+## "Western" *Empidonax* Flycatchers
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/birds.png}
+\end{figure}
+(Macaulay Library 109315481 & 236799211)
+
+## One species or two?
+
+\begin{figure}
+\includegraphics[width = 0.6\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/johnsonmarten.png}
+\end{figure}
+(Johnson & Marten 1988 *Auk*)  
+
+## New information, more genes, more geography
+
+\begin{figure}
+\includegraphics[width = 0.85\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/rangemap.png}
+\end{figure}
+(Linck et al. 2019 *Syst. Biol.*) 
+
+# $H_{1}$: Mountain ranges structure genetic variation in Western *Empidonax*  
+
+## Geographically structured populations
+
+\begin{figure}
+\includegraphics[width = 0.75\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/paraphylyA.png}
+\end{figure}
+(Linck et al. 2019 *Syst. Biol.*)
+
+## Geographically structured populations
+
+\begin{figure}
+\includegraphics[width = 0.75\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/paraphylyB.png}
+\end{figure}
+(Linck et al. 2019 *Syst. Biol.*)
+
+## COFL is paraphyletic!
+
+\begin{figure}
+\includegraphics[width = 0.75\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/paraphyly2.png}
+\end{figure}
+(Linck et al. 2019 *Syst. Biol.*)
+
+## Hybridization at forest corridors
+
+\begin{figure}
+\includegraphics[width = 0.75\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/hybrids.png}
+\end{figure}
+(Linck et al. 2019 *Syst. Biol.*)
+
+## Takeaways
+
+- 1 species of WEFL (for now)  
+
+- Hybridization is key  
+
+- There's no getting around comprehensive sampling for delimitation of management units 
+
+- Climate fidelity and montane geography explain genetic structure in *Empidonax* flycatchers  
+
+## Outline  
+
+- $Q_{1}$: How has climate fidelity shaped genetic variation in Western *Empidonax* flycatchers?  
+
+- **$Q_{2}$: What can we learn from adding climatic complexity to population genetic models?**   
+
+- $Q_{3}$: What can climate fidelity tell us about evolutionary potential?  
+
+- $Q_{4}$: What is the role of evolutionary thinking in conservation biology?  
+
+## Acknowledgements:
+
+- **Collaborators**: CJ Battey, Ana Bedoya
+
+- **Funding**: NSF DDIG #1701224
+
+## Climatic cycles shape biodiversity
+
+\begin{figure}
+\includegraphics[width =
+0.65\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/rand.png}
+\end{figure}
+(Rand 1948 *Evolution*)
+
+## Climate fidelity and cyclical contact
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/flantua.png}
+\end{figure}
+(Flantua et al. 2019 *J.* *Biogeog.*)
+
+## Simple models of divergence
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/gavrilets.png}
+\end{figure}
+(Gavrilets 2003 *Evolution*)  
+
+## For example: allopatric speciation
+
+\[
+  \overbrace{T^a}^\text{time to speciation} = 
+    \underbrace{2}_\text{no. alleles} *
+    \overbrace{\frac{1}{\mu}}^\text{substitution rate} 
+    =\frac{2}{\mu}\
+ \]
+
+# $H_{1}$: Cyclical contact slows divergence, but not *that* much  
+
+## Our own toy model
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/fig3_1.png}
+\end{figure}
+(Linck & Battey In revision *Am. Nat.*)
+
+## Our own toy model
+
+\[
+\overbrace{T^{t}}^\text{time to speciation}=\frac{\overbrace{n}^\text{number of climate cycles}}{\sum_{i=1}^{n} \underbrace{\alpha}_\text{time in allo.}\underbrace{\left(\frac{\mu}{2}\right)}_\text{allo. model}+\underbrace{(1-\alpha)}_\text{time in para.}\underbrace{\left(\frac{\mu^{2}}{m}\right)}_\text{para. model}}\;
+\
+ \]
+
+## Our own toy model  
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+
+# functions from gavrilets under drift alone
+allopatric_speciation <- function(mu){
+  t <- (2/mu)
+  return(t)
+}
+
+parapatric_speciation <- function(mig,mu){
+  t <- (mig/mu^2)
+  return(t)
+}
+
+periodic_geneflow <- function(mig,mu,alpha){
+  allo <- allopatric_speciation(mu=mu)
+  para <- parapatric_speciation(mig=mig,mu=mu)
+  t <- ((alpha*(allo^-1)  + (1-alpha)*(para^-1))^-1) 
+  return(t)
+}
+
+c0 <- read.table("~/Dropbox/speciation_cyclical_migration/simple_model_output/allopatry_neutral.txt")
+c1 <- read.table("~/Dropbox/speciation_cyclical_migration/simple_model_output/flux50_neutral.txt")
+c2 <- read.table("~/Dropbox/speciation_cyclical_migration/simple_model_output/parapatry_neutral.txt")
+df0 <- cbind.data.frame(c0, rep("none", 50))
+colnames(df0) <- c("generations","model")
+df1 <- cbind.data.frame(c1, rep("periodic", 50))
+colnames(df1) <- c("generations","model")
+df2 <- cbind.data.frame(c2, rep("continuous", 50))
+colnames(df2) <- c("generations","model")
+df <- rbind.data.frame(df0,df1,df2)
+df$mode <- cbind(c(rep("neutral",150)))
+
+df$model <- factor(df$model, levels=c("none", "periodic", "continuous"))
+gav <- allopatric_speciation(mu=1e-4)
+gavp <- parapatric_speciation(mig=0.01,mu=1e-4)
+gav50<- periodic_geneflow(mig=0.025,mu=1e-4,alpha=0.5)
+
+ggplot(df, aes(x=model, y=generations)) + 
+  theme_bw()+
+  theme(panel.grid = element_blank(),
+        text = element_text(size = 20),
+        axis.text.x = element_text(size = 18)) +
+  geom_jitter(shape=16, position=position_jitter(0.2)) +
+  geom_hline(aes(yintercept = gav, color="dodgerblue",linetype="none")) +
+  geom_hline(aes(yintercept = gavp, color="dodgerblue",linetype="continuous")) +
+  geom_hline(aes(yintercept = gav50, color="dodgerblue",linetype="periodic")) +
+ 
+  scale_color_manual(values=c("dodgerblue"),guide=FALSE) +
+  scale_fill_manual(values=c("dodgerblue"), guide=FALSE) +
+  geom_boxplot(alpha=0.8, aes(fill=mode),guide=FALSE) +
+  scale_y_continuous(trans='log10') +
+  labs(linetype="gene flow")+
+  ylab("Time to speciation") +
+  xlab("Model") +
+  labs(subtitle = expression(alpha~"= 0.5, "~mu~"= 1e-4,"~m~"=0.01"))
+
+```
+(Linck & Battey In revision *Am. Nat.*)
+
+# $H_{2}$: Cyclical contact has a distinct genomic signature 
+
+## Parameterizing simulations
+
+\begin{figure}
+\includegraphics[width = 0.95\linewidth]{/Users/ethanlinck/Dropbox/speciation_cyclical_migration/figures/fig3_2.png}
+\end{figure}
+(Linck & Battey In revision *Am. Nat.*)
+
+## Different summary statistics 
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(data.table)
+library(ggplot2)
+
+#summary stats for constant v periodic migration
+ss_p <- fread("~/Dropbox/speciation_cyclical_migration/sumstats/periodic.txt")
+ss_p$migration <- "periodic"
+colnames(ss_p)[10] <- "ibs_bw_long"
+colnames(ss_p)[13] <- "ibs_wi_long"
+ss_c <- fread("~/Dropbox/speciation_cyclical_migration/sumstats/constant.txt")
+ss_c$migration <- "continuous"
+colnames(ss_c)[10] <- "ibs_bw_long"
+colnames(ss_c)[13] <- "ibs_wi_long"
+ss <- rbind(ss_p,ss_c)
+pd <- melt(ss,id.vars="migration")
+pd <- subset(pd,!variable %in% c("dxy", "ibs_bw_mean", "ibs_bw_skew", "ibs_bw_long", "ibs_wi_mean", "ibs_wi_skew", "ibs_wi_long"))
+pd$variable <- factor(pd$variable, 
+                      levels = c("segsites",
+                                 "pi",
+                                 "thetaW",
+                                 "tajD",
+                                 "het_o",
+                                 "fst"), ordered = TRUE, 
+                      labels = c("SNPs",expression(pi),
+                                 paste(expression(theta),'[W]'),'D[Tajima]','H[O]',
+                                                   'F[ST]'))
+
+p <- ggplot(data=pd,aes(x=value,fill=migration))+
+  theme_bw()+
+  theme(panel.grid = element_blank()) +
+  theme(strip.background = element_blank(),
+        axis.title = element_blank(),
+        axis.text=element_blank(),
+        strip.text=element_text(size=18),
+        legend.text = element_text(size=18),
+        legend.position="bottom")+
+  facet_wrap(~variable,labeller = label_parsed,scales="free")+
+  scale_fill_manual(values=c("dodgerblue","orange"))+
+  geom_density(color="black",alpha=0.7)
+
+p
+```
+(Linck & Battey In revision *Am. Nat.*)
+
+## Takeaways
+
+- Climate fidelity involved in an efficient mode of divergence  
+
+- The timing of gene flow matters  
+
+- Potentially detectable with sequence data 
+
+- Climatic complexity adds value to population genetic models  
+
+## Outline  
+
+- $Q_{1}$: How has climate fidelity shaped genetic variation in Western *Empidonax* flycatchers?  
+
+- $Q_{2}$: What can we learn from adding climatic complexity to population genetic models?  
+
+- **$Q_{3}$: What can climate fidelity tell us about evolutionary potential?**  
+- $Q_{4}$: What is the role of evolutionary thinking in conservation biology?  
+
+## Acknowledgements:  
+
+- **Collaborators**: Daniel Cadena, Cameron Ghalambor, Ben Freeman, Gavin Jones, Laura Céspedes
+
+- **Funding**: NSF PRFB  
+
+## Move, **adapt** / acclimate, or die 
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/bay.png}
+\end{figure}
+(Bay et al. 2018 *Science*)  
+
+## How quickly do species adapt to new climates?  
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/tapaculos1.png}
+\end{figure}
+
+(Linck et al. 2021 *Biol. Lett.*)  
+
+## Climate fidelity across phylogeny in tapaculos  
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/tapaculos2.png}
+\end{figure}
+
+(Linck et al. 2021 *Biol. Lett.*)
+
+## Climate fidelity shapes population trajectories   
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/pujolar_psmc.png}
+\end{figure}
+
+(Pujolar et al. 2022 *Nat. Comm.*)  
+
+# $H_{1}$: Climate fidelity is negatively correlated with evolutionary potential
+
+## Testing for correlations  
+
+\begin{figure}
+\includegraphics[width = 0.75\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/climate_fidelity_conceptual.png}
+\end{figure}  
+
+## Western forests host niches under threat
+
+\begin{figure}
+\includegraphics[width = 0.9\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/corfly_trends.png}
+\end{figure}
+
+(eBird) 
+
+## Megafires as evolutionary experiment  
+
+\begin{figure}
+\includegraphics[width = 0.7\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/mca.jpg}
+\end{figure}  
+(Higuera et al. 2021 *PNAS*)  
+
+## Outline  
+
+- $Q_{1}$: How has climate fidelity shaped genetic variation in Western *Empidonax* flycatchers?  
+
+- $Q_{2}$: What can we learn from adding climatic complexity to population genetic models?  
+
+- $Q_{3}$: What can climate fidelity tell us about evolutionary potential?
+
+- **$Q_{4}$: What is the role of evolutionary thinking in conservation biology?**  
+
+## Evolutionary biology can tell us about **evolution**
+
+\begin{figure}
+\includegraphics[width = 0.7\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/evol_adaptive.png}
+\end{figure}  
+
+## Evolutionary biology can tell us about **traits**
+
+\begin{figure}
+\includegraphics[width = 0.7\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/evol_traits.png}
+\end{figure}  
+
+## Evolutionary biology can tell us about **values**  
+
+\begin{figure}
+\includegraphics[width = 0.7\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/evol_values.png}  
+\end{figure}  
+
+## Linck Lab @ Montana State University, Fall 2023
+
+\begin{figure}
+\includegraphics[width = 0.7\linewidth]{/Users/ethanlinck/Dropbox/misc_talks/images/lablogo.png}  
+\end{figure}  
+
+## Resources 
+
+- slides and code: https://github.com/elinck/misc_talks/
+- website: https://elinck.org/  
+- twitter: @ethanblinck  
+
+## References
+
+- Merriam 1890. *North. Am. Faun.*, 10.5962/bhl.title.86972  
+- Wang et al. 2023. *PNAS*, 120(7), e2201946119. 
+- Rand 1948. *Evolution*, 2(4), 314-321.  
+- Rull 2008. *Molecular Ecology*, 17(11), 2722-2729.  
+- Johnson & Marten 1988. *The Auk*, 105(1), 177-191.
+- Linck et al. 2019. *Systematic Biology*, 68(6), 956-966.
+- Flantua et al. 2019. *J. Biogeography*, 46(8), 1808-1825 
+- Gavrilets 2003. *Evolution*, 57(10), 2197-2215. 
+- Bay et al. 2018. *Science*, 359(6371), 83-86. 
+- Linck et al. 2021. *Biology Letters*, 17(10), 20210363. 
+- Pujolar et al. 2022. *Nature Communications*, 13(1), 268.
+- Higuera et al. 2021. *PNAS*, 118(25), e2103135118.  
+
+## Thanks!
+
+- $Q_{1}$: Climate fidelity and montane geography explain genetic structure in *Empidonax* flycatchers  
+
+- $Q_{2}$: Climatic complexity adds value to population genetic models  
+
+- $Q_{3}$: Climate fidelity may be inversely correlated with evolutionary potential
+
+- $Q_{4}$: Evolutionary thinking in conservation biology is about more than adaptative responses  
+
+
+
+
+
+
