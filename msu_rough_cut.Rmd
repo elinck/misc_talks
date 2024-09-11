@@ -1,0 +1,996 @@
+---
+title: "Ecological and historical constraints on elevational ranges in birds" 
+author: Ethan B. Linck
+date: |
+  | Montana State University
+  | Department of Ecology
+header-includes:
+- \addtobeamertemplate{title page}{\centering \includegraphics[width=1\textwidth]{/Users/k14m234/Dropbox/misc_talks/images/andean_birds.png}}{}
+output: beamer_presentation
+fontsize: 12pt 
+--- 
+
+## Big Pattern: $\beta$ diversity and elevation
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/k14m234/Dropbox/andean_range_limits/figures/beta_div.jpg}
+\end{figure}  
+(McKnight et al. 2007 *PLoS ONE*)
+
+## Mountain biodiversity comes from elevational specialization
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=3.5, fig.width=5.5}
+library(tidyverse)
+library(ggplot2)
+
+
+# load stotz data
+stotz <- read.csv("~/Dropbox/andean_range_limits/data/stotz_elevation_data.csv")
+stotz <- cbind.data.frame(stotz$GENUS, stotz$SPECIES, 
+                          stotz$MIN, stotz$MAX, stotz$MIDPT.ELEV)
+colnames(stotz) <- c("genus","species","elev_min","elev_max","elev_midpt")
+stotz$elev_range <- stotz$elev_max - stotz$elev_min
+stotz_mod <- stotz[stotz$elev_range>0,]
+
+ranges <- ggplot(stotz_mod, aes(x=elev_range)) +
+  geom_histogram(binwidth = 100, color="black",fill="gray70") +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  xlab("Elevational range breadth")  +
+  ylab("Count") +
+  geom_vline(xintercept = median(stotz$elev_range, na.rm=TRUE),
+             linetype="dashed",linewidth=1.5, color="red")
+ranges
+```
+
+## Birds and biogeography  
+
+\begin{figure}. 
+\includegraphics[width = 0.9\linewidth]{/Users/k14m234/Dropbox/misc_talks/images/jason.jpg}
+\end{figure} 
+
+## Birds and biogeography  
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/k14m234/Dropbox/andean_range_limits/figures/zootheratalaseae.png}
+\end{figure} 
+
+(https://www.montana.edu/ecology/msu_researchers_capture_photos_of_new_britain-thrush.html)
+
+## Historical vs ecological biogeography 
+
+\begin{figure}  
+\includegraphics[width = \linewidth]{/Users/k14m234/Dropbox/andean_range_limits/figures/conceptual.png}  
+\end{figure}  
+
+## Range limiting processes are scale dependent
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/k14m234/Dropbox/misc_talks/images/histecol.png}
+\end{figure}  
+
+(Linck In Review *Am. Nat.*)
+
+## Talk outline
+
+1) How does plasticity in respiratory traits relate to range breadth? 
+
+\begin{figure}
+\includegraphics[width = 0.4\linewidth]{/Users/k14m234/Dropbox/misc_talks/images/andean_birds.png}
+\end{figure}  
+
+2) Are molecular adaptations to high altitude predictable?  
+
+\begin{figure}
+\includegraphics[width = 0.1\linewidth]{/Users/k14m234/Dropbox/misc_talks/images/hemoglobin.png}
+\end{figure}  
+
+3) How does speciation generate $\beta$ diversity across elevation?  
+
+\begin{figure}
+\includegraphics[width = 0.15\linewidth]{/Users/k14m234/Dropbox/misc_talks/images/syma_vertical.png}
+\end{figure}  
+
+# 1) How does plasticity in respiratory traits relate to range breadth? 
+
+## Acknowledgements:
+
+- **Coauthors**: Jessie L. Williamson, Emil Bautista, Elizabeth J. Beckman, Phred M. Benham, Shane G. DuBay, L. Monica Flores, Chauncey R. Gadek, Andrew B. Johnson, Matthew R. Jones, Jano Núñez-Zapata, Alessandra Quiñonez, C. Jonathan Schmitt, Dora Susanibar, Jorge Tiravanti C., Karen Verde-Guerra, Natalie A. Wright, Thomas Valqui, Jay F. Storz, Christopher C. Witt  
+
+- **Funding**: NSF DBI #1907353, DEB #1146491, and DEB #0543556  
+
+## Distributions on environmental gradients
+
+"In their simplest form the models state that the occurrence of species is limited respectively by: (i) physical or biological conditions that vary in parallel with the measured gradient, (ii) competitive exclusion and (iii) environmental discontinuities (ecotones)..." (Terborgh 1971 *Ecol.*)
+
+\begin{figure}
+\includegraphics[width = 0.4\linewidth]{/Users/k14m234/Dropbox/misc_talks/images/terborgh.jpg}
+\end{figure}  
+
+## Humid tropical elevational gradients lack ecotones 
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/k14m234/Dropbox/misc_talks/images/gradients.jpg}
+\end{figure}  
+
+## $PO_2$ varies in parallel with elevation
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.height=3.5, fig.width=4.5}
+library(ggplot2)
+library(cowplot)
+library(tidyverse, quietly = TRUE)
+
+# load functions script
+source("~/Dropbox/andean_range_limits/scripts/00_functions.R")
+
+# calculate water vapor pressure based on temperature and humidity
+wvp <- water_vapor_pressure(temp_celsius = 15, humidity = 20)
+
+# assign coefficients for formulae
+sea_level_pressure <- 760 # in mmHg
+mass <- 0.0289644 # molar mass of gas in kg/mol
+gravity <- 9.81 # acceleration due to gravity in m/s2
+gas_constant <- 8.3145 #J/molK
+temp_kelvin <- 15 + 273.15 # assuming 15C here
+mbar_conversion <- 1.33322 # convert mmHg to mbar
+o2 <- 0.2095 # proportion o2 in atmosphere
+max_o2 <- ((sea_level_pressure*exp(-(mass*gravity)/(gas_constant*temp_kelvin)*0)*mbar_conversion)-wvp)*o2
+
+# barometric formula
+p <- function(x) sea_level_pressure *exp(-(mass*gravity)/(gas_constant*temp_kelvin)*x)*mbar_conversion
+o <- function(x) ((sea_level_pressure*exp(-(mass*gravity)/(gas_constant*temp_kelvin)*x)*mbar_conversion)-wvp)*o2
+po2 <-function(x) (((sea_level_pressure*exp(-(mass*gravity)/(gas_constant*temp_kelvin)*x)*mbar_conversion)-wvp)*o2/max_o2)*100
+
+p2 <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  theme_bw() +
+  stat_function(fun = po2) +
+  scale_linetype_discrete(guide=FALSE) +
+  theme(panel.grid = element_blank()) +
+  xlim(0,9500) +
+  ylim(0,100) +
+  geom_vline(xintercept = 1508, size=3, alpha=0.3) +
+  geom_text(aes(x=1158, label="MSU Campus, MT: 84%", y=23), angle=90, size=3) +
+  geom_vline(xintercept = 3662, size=3, alpha=0.2) +
+  geom_text(aes(x=3312, label="Granite Peak, MT: 63%", y=23), angle=90, size=3) +
+  geom_vline(xintercept = 6768, size=3, alpha=0.1) +
+  geom_text(aes(x=6418, label="Huascarán, Peru: 44%", y=23), angle=90, size=3) +
+  geom_text(aes(x=7300, label="15°C, 20% humidity", y=100,), size=3) +
+  xlab("Elevation (m)") +
+  ylab(expression(paste("% sea level ", PO[2]))) +
+  labs(linetype=element_blank()) +
+  theme(legend.position = c(0.8, 0.9))
+  p2
+```
+
+## Hemoglobin facilitates oxygen transport for aerobic respiration
+
+\begin{figure}
+\includegraphics[width = 0.5\linewidth]{/Users/k14m234/Dropbox/misc_talks/images/hemoglobin.png}
+\end{figure}  
+
+## The increase in [Hb] with altitude varies among human populations
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/k14m234/Dropbox/andean_range_limits/figures/gassmann.png}
+\end{figure}
+
+(Gassmann et al. 2019)
+
+## The increase in [Hb] concentration with altitude varies among Andean bird species
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE, fig.height=8, fig.width=8}
+library(tidyverse)
+library(cowplot)
+
+blood_df_slope <- read.csv("~/Dropbox/andean_range_limits/data/filtered_hb_dataset.csv")
+spinus <- filter(blood_df_slope, genus=="Spinus")
+p10 <- ggplot(spinus, aes(x=elevation, y=hb)) +
+  facet_wrap(~species) +
+  geom_point(pch=21,stroke=1,color="black",show.legend = FALSE) +
+  geom_smooth(method="lm",se=FALSE,linetype="dashed",color="red") +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        strip.background = element_blank()) +
+  xlab("Elevation")+
+  ylab("[Hb]")
+```
+```{r, message=FALSE, warning=FALSE, echo=FALSE, fig.height=3, fig.width=7}
+p10
+```
+
+##  Does blood-$O_{2}$ carrying-capacity influence elevational specialization?
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.height=4, fig.width=7}
+# libraries
+library(ggplot2)
+library(cowplot)
+library(tidyverse, quietly = TRUE)
+
+# load functions script
+source("~/Dropbox/andean_range_limits/scripts/00_functions.R")
+
+# calculate water vapor pressure based on temperature and humidity
+wvp <- water_vapor_pressure(temp_celsius = 15, humidity = 20)
+
+# assign coefficients for formulae
+sea_level_pressure <- 760 # in mmHg
+mass <- 0.0289644 # molar mass of gas in kg/mol
+gravity <- 9.81 # acceleration due to gravity in m/s2
+gas_constant <- 8.3145 #J/molK
+temp_kelvin <- 15 + 273.15 # assuming 15C here
+mbar_conversion <- 1.33322 # convert mmHg to mbar
+o2 <- 0.2095 # proportion o2 in atmosphere
+max_o2 <- ((sea_level_pressure*exp(-(mass*gravity)/(gas_constant*temp_kelvin)*0)*mbar_conversion)-wvp)*o2
+
+# barometric formula
+p <- function(x) sea_level_pressure *exp(-(mass*gravity)/(gas_constant*temp_kelvin)*x)*mbar_conversion
+o <- function(x) ((sea_level_pressure*exp(-(mass*gravity)/(gas_constant*temp_kelvin)*x)*mbar_conversion)-wvp)*o2
+po2 <-function(x) (((sea_level_pressure*exp(-(mass*gravity)/(gas_constant*temp_kelvin)*x)*mbar_conversion)-wvp)*o2/max_o2)*100
+
+p2 <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  theme_bw() +
+  stat_function(fun = po2) +
+  scale_linetype_discrete(guide=FALSE) +
+  theme(panel.grid = element_blank()) +
+  xlim(0,9500) +
+  ylim(0,100) +
+  geom_vline(xintercept = 1508, size=3, alpha=0.3) +
+  geom_text(aes(x=1158, label="MSU Campus, MT: 84%", y=23), angle=90, size=3) +
+  geom_vline(xintercept = 3662, size=3, alpha=0.2) +
+  geom_text(aes(x=3312, label="Granite Peak, MT: 63%", y=23), angle=90, size=3) +
+  geom_vline(xintercept = 6768, size=3, alpha=0.1) +
+  geom_text(aes(x=6418, label="Huascarán, Peru: 44%", y=23), angle=90, size=3) +
+  geom_text(aes(x=7300, label="15°C, 20% humidity", y=100,), size=3) +
+  xlab("Elevation (m)") +
+  ylab(expression(paste("% sea level ", PO[2]))) +
+  labs(linetype=element_blank()) +
+  theme(legend.position = c(0.8, 0.9))
+
+ranges <- ggplot(stotz_mod, aes(x=elev_range)) +
+  geom_histogram(binwidth = 100, color="black",fill="gray70") +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  xlab("Elevational range breadth")  +
+  ylab("Count") +
+  geom_vline(xintercept = median(stotz$elev_range, na.rm=TRUE),
+             linetype="dashed",size=1.5, color="red")
+
+o2_ranges <- plot_grid(p2, ranges, nrow=1)
+o2_ranges
+
+```
+
+## Metric: Respiratory "plasticity" ([Hb] sensitivity)  
+
+```{r, warning=FALSE, echo=FALSE, message=FALSE}
+library(tidyverse)
+library(cowplot)
+
+# read in hb data, subset
+blood_df <- read.csv("~/Dropbox/andean_range_limits/data/filtered_hb_dataset.csv")
+cyan <- filter(blood_df, species=="Diglossa cyanea")
+brun <- filter(blood_df, species=="Diglossa brunneiventris")
+
+# make plot
+cyan_plasticity <- ggplot(cyan, aes(x=elevation, y=hb)) +
+ geom_point(pch=21,stroke=1,color="black",show.legend = FALSE) +
+ geom_smooth(method="lm",se=FALSE,linetype="dashed",color="red") +
+ theme_bw() +
+ theme(panel.grid = element_blank(),
+       strip.background = element_blank(),
+       plot.title = element_text(color = "red"),
+       axis.title = element_text(size=15)) +
+ xlab("Elevation")+
+ xlim(1000, 4500) + 
+ ylim(11, 25) + 
+ ylab("[Hb]") +
+ ggtitle("shallower slope, less sensitive")
+
+brun_plasticity <- ggplot(brun, aes(x=elevation, y=hb)) +
+ geom_point(pch=21,stroke=1,color="black",show.legend = FALSE) +
+ geom_smooth(method="lm",se=FALSE,linetype="dashed",color="red") +
+ theme_bw() +
+ theme(panel.grid = element_blank(),
+       strip.background = element_blank(),
+       plot.title = element_text(color = "red"),
+       axis.title = element_text(size=15)) +
+ xlab("Elevation")+
+ xlim(1000, 4500) +
+ ylim(11, 25) + 
+ ylab("[Hb]") +
+ ggtitle("steeper slope, more sensitive")
+
+plasticity <- plot_grid(cyan_plasticity, brun_plasticity, nrow=1)
+```
+```{r, fig.height=4, fig.width=7, echo=FALSE, message=FALSE, warning=FALSE}
+plasticity
+```
+ 
+## $H_{1}$: Respiratory plasticity influences niche breadth
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+library(ggplot2)
+library(cowplot)
+
+fun.1 <- function(x) 3*x + 2
+fun.2 <- function(x) -3*x + 2
+fun.3 <- function(x) 2
+
+p1 <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+ stat_function(fun = fun.1, linetype="dashed", color="black", size=1) +
+#stat_function(fun = fun.1, color="black", size=20, alpha=0.2) +
+ xlim(1,10) +
+ theme_classic() +
+ theme(axis.text = element_blank(),
+       axis.ticks = element_blank(),
+       axis.title = element_text(size=10)) +
+ xlab("Elevational Range Breadth") +
+ ylab("[Hb] Sensitivity") 
+#ggtitle("H1: Plasticity facilitates niche breadth \nGeneralists have greater respiratory plasticity \n")
+
+p2 <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  stat_function(fun = fun.2, linetype="dashed", color="black", size=1) +
+  #stat_function(fun = fun.2, color="black", size=20, alpha=0.2) +
+  xlim(0,10) +
+  theme_classic() +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_text(size=10)) +
+  xlab("Elevational Range Breadth") +
+  ylab("[Hb] Sensitivity") 
+  #ggtitle("H2: Plasticity constrains nichee breadth \nSpecialists have greater respiratory plasticity \n")
+
+top <- plot_grid(p1, p2, nrow=1)
+```
+```{r, echo=FALSE, fig.height=2.5, fig.width=2.5, fig.align='center'}
+p1
+```
+
+## Methods  
+
+- **[Hb]** (+ other traits) from 2367 individuals, 136 species  
+- Bayesian linear models  
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=3, fig.width=7}
+library(mapdata)
+
+coast_map <- fortify(map("worldHires", fill=TRUE, plot=FALSE))
+p4 <- ggplot() + coord_map() +
+  theme_bw() +
+  #theme(axis.title.x=element_blank(),
+  #      axis.title.y=element_blank()) +
+  #geom_map(data=coast_map, map=coast_map, aes(x=long, y=lat, map_id=region), 
+  #         fill="white", color="black") +
+  geom_map(data=data.frame(region="Peru"), map=coast_map,
+                    aes(map_id=region), fill="gray100", col="gray0") + 
+  xlim(-82,-68) + 
+  xlab("Latitude") +
+  ylab("Longitude") +
+  ylim(-19,0.5) +
+  #geom_point(data=df,aes(x=long, y=lat,fill=elev), colour="black",pch=21,alpha=0.3,size = 0.5) + 
+  #scale_fill_gradient(low = "white", high = "black") +
+  #xlab("longitude") +
+  #ylab("latitude") +
+  stat_bin2d(data=blood_df, aes(x=long, y=lat,fill = ..count..), color="black", binwidth = c(0.5,0.5)) +
+  scale_fill_gradient(low = "white", high = "black") #name = element_blank())
+
+p5 <- ggplot(blood_df, aes(x=elevation)) + geom_histogram(binwidth = 100, color="black",fill="gray70") +
+  theme_bw() +
+  theme(axis.title.y = element_blank()) +
+  xlab("Elevation (m)")
+
+plot_grid(p4, p5)
+```
+  
+## Respiratory plasticity varies but mostly positive  
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.height=4, fig.width=6}
+# load empirical slope data, manipulate for visualization
+slopes_empirical <- read_csv("~/Dropbox/andean_range_limits/data/blood_slopes.csv")
+slopes_dist <- slopes_empirical %>% 
+  dplyr::select(slope_hb, slope_hct, slope_mchc) %>% 
+  gather()
+
+# transform values to 1000m intervals
+slopes_dist$value <- slopes_dist$value*1000
+
+# calculate quantiles, add linetype legend
+slope_quants <- slopes_dist %>% 
+  group_by(key) %>% 
+  summarise(value = quantile(value, c(0.25, 0.5, 0.75)), 
+            q = c(0.25, 0.5, 0.75))
+slope_quants <- slope_quants %>% 
+  mutate(lt = case_when(
+    q == 0.25 ~ "dashed",
+    q == 0.5 ~ "solid",
+    q == 0.75 ~ "dashed"
+  ))
+
+# plot, top row
+p9 <- ggplot(slopes_dist[slopes_dist$key=="slope_hb",], aes(x=value)) + 
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        strip.background = element_blank(),
+        strip.text = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text = element_text(size=20),
+        axis.title = element_text(size=20),
+        panel.spacing.x = unit(4, "mm")) +
+  geom_histogram(bins=50, fill=NA, color="black") +
+  xlab("[Hb] (g/dL/1000 m)") +
+  ylab("Density") +
+  geom_vline(data=slope_quants[slope_quants$key=="slope_hb",], aes(xintercept=value, linetype=lt), color="red", size=1) +
+  scale_linetype_manual(values = c("dashed", "solid"), guide=FALSE)
+
+p9
+```
+
+## $H_{1}$: Elevational generalists have greater respiratory plasticity   
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(tidybayes)
+library(tidyverse)
+
+source("~/Dropbox/andean_range_limits/scripts/00_functions.R")
+
+# load draws and evaluate levels of support for different variables with function
+slope_hb_draws <- read_csv("~/Dropbox/andean_range_limits/dryad/data/slope_hb_draws_interaction.csv") 
+
+# calculate width for point interval probabilities
+slope_hb_draws <- slope_hb_draws %>% 
+  group_by(.variable) %>% 
+  median_hdi(.value, .width = c(.95, .80, .5)) %>%
+  group_by(.variable) %>% 
+  mutate(condition_mean = mean(.value)) 
+
+# assign credibility levels
+slope_hb_draws <- credibility_coder(slope_hb_draws)
+
+# turn into factor
+slope_hb_draws$credible <- as.factor(slope_hb_draws$credible)
+```
+```{r, echo=FALSE, fig.height=4,fig.width=6}
+p17 <- ggplot(slope_hb_draws, aes(y = fct_rev(.variable), 
+            x=condition_mean, 
+            xmin = .lower, 
+            xmax = .upper,
+            size = -.width)) +
+ geom_pointinterval(aes(color=credible)) +
+ geom_vline(xintercept = 0, linetype="dashed") +
+ scale_color_manual(values = c("black","darkred","darksalmon"),
+                   name="Credible Interval",
+                   breaks=c(0,1,2),
+                   labels=c("NA", "95%","80%")) +  
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        strip.background = element_blank(),
+        axis.title = element_text(size=15)) +
+  xlab(expression(paste(Beta,"*",10^{3}))) +
+  ylab(element_blank()) + 
+  scale_y_discrete(breaks=c("b_elev_range_s","b_median_elevation_s","b_sampling_range_s","b_mass_s", "b_elev_range_s:median_elevation_s"),
+                   labels=c("Elev. Range","Range Elev.", "Sampling Range","Mass", "Elev. Range * Range Elev.")) +
+  ggtitle("[Hb] Sensitivity")
+
+p17
+```
+
+# We suggest: Respiratory plasticity can facilitate elevational range expansion  
+
+# 2) Are molecular adaptations to high altitude predictable? 
+
+## Acknowledgements:
+
+- **Coauthors**: Libby Beckman, Andrea Chavez, Chauncey Gadek, Jenna McCullough, Chandru Natarajan, Jay Storz, Christopher C. Witt  
+
+- **Funding**: NSF DBI #1907353, DEB #1146491, and DEB #0543556  
+
+## Hemoglobin structure impacts oxygen transport 
+
+\begin{figure}
+\includegraphics[width = 0.5\linewidth]{/Users/k14m234/Dropbox/misc_talks/images/hemoglobin.png}
+\end{figure}  
+red=$\alpha$-globin subunit, blue=$\beta$-globin subunit, green=iron-containing hemes  
+
+## Three genes code for adult avian hemoglobin isoforms
+
+\begin{figure}
+\includegraphics[width = 0.7\linewidth]{/Users/k14m234/Dropbox/misc_talks/images/hemoglobin_genetics.png}
+\end{figure}  
+
+(Opazo et al. 2015 *Mol. Biol. Evol*)
+
+## $\beta$-Ser substitutions associated with elevation in hummingbirds 
+
+\begin{figure}
+\includegraphics[width = 0.8\linewidth]{/Users/k14m234/Dropbox/misc_talks/images/hummer_hemo.png}
+\end{figure}  
+
+(Projecto-Garcia et al. 2013 *PNAS*)  
+
+## $\beta$-Ser increases oxygen carrying capacity in hummingbirds and diglossine tanagers
+
+\begin{figure}
+\includegraphics[width = 0.9\linewidth]{/Users/k14m234/Dropbox/misc_talks/images/aa_diglossine.png}
+\end{figure}  
+
+(Natarajan et al. 2016 *Science*)  
+
+## Diglossine tanagers 
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/k14m234/Dropbox/misc_talks/images/diglossines.png}
+\end{figure}  
+
+## $H_1$: Functional substitutions to Hb are predictably associated with elevation in Diglossines, too  
+
+\begin{figure}
+\includegraphics[width = 0.7\linewidth]{/Users/k14m234/Dropbox/misc_talks/images/h1_digloss.png}
+\end{figure}  
+
+## Methods  
+
+- Sequence capture of all 7 **Hb** genes for 88 individuals of 22 species 
+- CDS annotation and amino acid substitution 
+- Ancestral state reconstruction
+- Phylogenetic linear mixed models with Brownian motion trait evolution
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(phytools)
+library(ggtree)
+
+# plot fig
+tree <- read.tree("~/Dropbox/misc_talks/data/diglossine22.tre")
+tree$tip.label <- sub("_", " ", tree$tip.label)
+
+# plot tree
+tree_fig <- ggtree(tree) +
+   xlim(-10, 60) +
+  geom_tiplab(size=2, color="black")
+```
+```{r, fig.width=3, fig.height=1.75, echo=FALSE}
+tree_fig
+```
+
+## Repeated Hb substitutions (but not $\beta$-83Ser)
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(phytools)
+library(ggtree)
+library(ggplot2)
+library(dplyr)
+library(viridis)
+library(tidyverse)
+
+# plot fig
+tree <- read.tree("~/Dropbox/misc_talks/data/diglossine22.tre")
+hb_data <- read.csv("~/Dropbox/misc_talks/data/dig3.csv")
+rownames(hb_data) <- hb_data$species
+hb_data <- hb_data[,2:23]
+
+# named vector of maximum species elevations
+max_elev <- setNames(hb_data$maxelev, rownames(hb_data))
+
+# ancestral state reconstruction
+fit <- phytools::fastAnc(tree, max_elev, vars=TRUE, CI=TRUE)
+td <- data.frame(node = nodeid(tree, names(max_elev)),
+               trait = max_elev)
+nd <- data.frame(node = names(fit$ace), trait = fit$ace)
+d <- rbind(td, nd)
+d$node <- as.numeric(d$node)
+tree$tip.label <- sub("_", " ", tree$tip.label)
+tree_diglossa <- full_join(tree, d, by = 'node')
+
+# filter to significant results
+hb_data_filtered <- hb_data %>% dplyr::select(HBA21, HBB55, HBB13, HBD55, HBB83)
+rownames(hb_data_filtered) <- sub("_", " ", rownames(hb_data_filtered))
+
+# plot tree
+tree_fig <- ggtree(tree_diglossa, aes(color=trait),
+        ladderize = FALSE, continuous = 'colour', size=3) +
+  scale_color_viridis(option = "D", name = "Max. Elev.") +
+   xlim(-10, 87)
+p1 <- gheatmap(tree_fig, hb_data_filtered, width=0.65, 
+        colnames=TRUE, legend_title="genotype", font.size = 3) +
+    scale_fill_grey(name="AA") +
+  geom_tiplab(size=3.6, offset=29, color="black")
+p1
+```
+
+# We conclude: evolution is both predictable and contigent (total cop out, lol)
+
+# 3) How does speciation generate $\beta$ diversity across elevation?  
+
+## Acknowledgements:
+
+- **Collaborators and Coauthors**: Salape Tulai, Bulisa Iova, Georgia Kapui, Ben Freeman, Jack Dumbacher, John Klicka, C.J. Battey, Kevin Epperly  
+
+- **Funding**: NSF DDIG #1701224, NSF DEB #0108247, and NDSEG and WRF-Hall Fellowships
+
+## Elevational replacements
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/k14m234/Dropbox/andean_range_limits/figures/diamond_modified.png}
+\end{figure}  
+(Diamond 1972)
+
+## Alternate paths to the same result  
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/k14m234/Dropbox/andean_range_limits/figures/elev_series_hypo.png}
+\end{figure}  
+
+## Phylogeny and the geography of speciation  
+
+\begin{figure}
+\includegraphics[width = \linewidth]{/Users/k14m234/Dropbox/andean_range_limits/figures/speciation_losos.jpg}  
+\end{figure}  
+
+(Losos & Glor 2003)  
+
+## *Syma* kingfishers as natural experiment  
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.height=4, fig.width=6}
+library(png)
+library(grid)
+library(raster)
+library(tidyverse)
+library(patchwork)
+
+setwd("~/Dropbox/syma_speciation/")
+
+# load kingfisher picture
+h <- readPNG("~/Dropbox/andean_range_limits/figures/syma_2x1.png")
+h <- rasterGrob(h)
+
+# write map
+map <- map_data("world")
+toro_range <- shapefile("data/Syma_torotoro_22683566.shp")
+mega_range <- shapefile("data/Syma_megarhyncha_22683569.shp")
+toro_range <- fortify(toro_range)
+mega_range <- fortify(mega_range)
+
+# plot map
+a <- ggplot()+coord_map()+theme_classic()+ylim(-14.5,2)+xlim(129,154)+
+  scale_fill_manual(values = c("#73D056FF","#20938CFF","#443B84FF"))+
+  #scale_fill_manual(name="species",values = c("grey45","grey85"))+
+  theme(panel.grid=element_blank(),axis.ticks = element_blank(),axis.title = element_blank(),
+        axis.text = element_blank())+
+  guides(colour = guide_legend(override.aes = list(size=6)))+
+  geom_polygon(data=toro_range, aes(x=long,y=lat,group=group),fill="gray75")+
+  geom_polygon(data=mega_range, aes(x=long,y=lat,group=group),fill="gray40")+
+  #geom_path(data=state,aes(x=long,y=lat,group=group),col="grey",lwd=0.25)+
+  geom_path(data=map,aes(x=long,y=lat,group=group))+
+  scale_size_continuous(range = c(3,8), breaks = c(1,2,3),name = "Samples") +
+  labs(fill="Species") +
+  guides(fill = guide_legend(override.aes = list(size=5)))+
+  theme(legend.text=element_text(size=15),
+        legend.title=element_text(size=15))
+#theme(legend.justification=c(1,1), legend.position=c(1,1))
+
+a + h
+```
+(art by Kevin Epperly)  
+
+
+## $H_{1}$: Parallel parapatric (ecological) speciation    
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.height=4, fig.width=6}
+library(phylogram)
+library(ggtree)
+library(raster)
+library(tidyverse)
+library(patchwork)
+
+x <- read.dendrogram(text = "((torotoro,megarhyncha),(torotoro,megarhyncha));")
+x <- as.phylo(x)
+x <- ggtree(x) + 
+  theme_tree() +
+  geom_tiplab() +
+  #geom_text2(aes(label=node), hjust=-.3) +
+  xlim(0,3.5) +
+  geom_hilight(node=1, fill="#443B84FF") +
+  geom_hilight(node=2, fill="#73D056FF") +
+  geom_hilight(node=3, fill="#443B84FF") +
+  geom_hilight(node=4, fill="#73D056FF")
+x
+``` 
+
+## $H_{1}$: Parallel parapatric (ecological) speciation    
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=3, fig.height=2.5}
+# generating 100 normal observations from a population with mean=50 and sd = 9 
+x = rnorm(10000, 0.2, 0.05) 
+# generating 100 error observations from a population with mean=0 and sd = 10 
+error = rnorm(10000, 0, 0.025)
+# generating dependent variable y = 150 - 4*x (intercept=150 and slope=-4)
+y = 1*x + error
+ggplot() + 
+  theme_classic() +
+  geom_point(aes(x=x, y=y), pch=21, alpha=0.7, size=2) +
+  labs(x=expression(D[XY]), y=expression(F[ST]))
+
+```
+
+$$
+F_{ST} = \frac{\pi_{\text{Between}} - \pi_{\text{Within}}}{\pi_{\text{Between}}}; \text{ }D_{XY} = \sum_{ij}{x_i}{y_j}{d_{ij}}
+$$ 
+
+## Methods  
+
+- mtDNA and nuclear DNA from fresh and historic tissues  
+- phylogenetic inference, clustering, and demographic modeling  
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.height=4, fig.width=7}
+
+setwd("~/Dropbox/syma_speciation/")
+
+###  Figure 1
+
+# prepare PC and map data
+sample_data <- read.csv("data/syma_spp_pcs.csv")
+attach(sample_data)
+sample_data$sp <- as.character(sample_data$sp)
+sample_data$sp[which(sample_data$ssp == "ochracea")] <- "ochracea"
+sample_data$sp <- as.factor(sample_data$sp)
+sp_means <- aggregate(PC1 ~ sp, data = sample_data, mean)
+meg_val <- sp_means$PC1[1]
+och_val <- sp_means$PC1[2]
+tor_val <- sp_means$PC1[3]
+sample_data$col <- ifelse(sample_data$sp == "megarhyncha", 
+                          meg_val, ifelse(sample_data$sp == "torotoro",
+                                          tor_val,och_val))
+sample_data$temp <- as.factor(paste(sample_data$lat, sample_data$long)) # messy sample size assignment
+sample_data$size <- 1
+sample_data$size[sample_data$temp == "-5.95 134.57"] <- 3
+sample_data$size[sample_data$temp == "-2.72 134.5"] <- 2
+sample_data$size[sample_data$temp == "-3.683 143.633"] <- 2
+sample_data$size[sample_data$temp == "-6.4583 147.4333"] <- 2
+sample_data$size[sample_data$temp == "-8.25 142.98"] <- 2
+sample_data$size[sample_data$temp == "9.5 150.666667"] <- 2
+
+map <- map_data("world")
+toro_range <- shapefile("data/Syma_torotoro_22683566.shp")
+mega_range <- shapefile("data/Syma_megarhyncha_22683569.shp")
+toro_range <- fortify(toro_range)
+mega_range <- fortify(mega_range)
+
+# plot map
+a <- ggplot()+coord_map()+theme_classic()+ylim(-14.5,2)+xlim(129,154)+
+  scale_fill_manual(values = c("#73D056FF","#20938CFF","#443B84FF"))+
+  scale_shape_manual(values=c(22, 24, 21)) +
+  #scale_fill_manual(name="species",values = c("grey45","grey85"))+
+  theme(panel.grid=element_blank(),axis.ticks = element_blank(),axis.title = element_blank(),
+        axis.text = element_blank())+
+  guides(colour = guide_legend(override.aes = list(size=6)))+
+  geom_polygon(data=toro_range, aes(x=long,y=lat,group=group),fill="gray75")+
+  geom_polygon(data=mega_range, aes(x=long,y=lat,group=group),fill="gray40")+
+  #geom_path(data=state,aes(x=long,y=lat,group=group),col="grey",lwd=0.25)+
+  geom_path(data=map,aes(x=long,y=lat,group=group))+
+  geom_point(data=sample_data,aes(x=long,y=lat,fill=sp,shape=sp,size=sample_data$size), alpha=0.85,stroke=1) +
+  scale_size_continuous(range = c(3,8), breaks = c(1,2,3),name = "Samples") +
+  labs(fill="Species",shape="Species") +
+  guides(fill = guide_legend(override.aes = list(size=5)))+
+  theme(legend.text=element_text(size=15),
+        legend.title=element_text(size=15))
+#theme(legend.justification=c(1,1), legend.position=c(1,1))
+
+a
+```
+
+## No evidence for parallel parapatric speciation  
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.height=4, fig.width=7}
+
+library(ggtree)
+library(treeio)
+
+setwd("~/Dropbox/syma_speciation/")
+
+# read mcc ND2 tree from beast
+beast <- read.beast("~/Dropbox/syma_speciation/data/syma_ND2.tree")
+beast@data[isTip(beast, beast@data$node),]$length_0.95_HPD <- NA
+
+# fortify data, change tip labels
+beast <- fortify(beast)
+beast$label <- c("EL10_toro","EL11_toro","EL13_toro","EL18_mega","EL19_mega","EL1_mega","EL20_mega",  
+                 "EL21_toro","EL23_mega","EL24_mega","EL27_mega","EL29_ochr","EL32_toro","EL39_toro",  
+                 "EL40_mega","EL41_toro","EL42_toro","EL43_toro","EL44_toro","EL45_toro","EL46_toro",  
+                 "EL47_toro","EL48_ochr","EL4_mega" ,"EL50_toro","EL51_toro","EL52_toro",  
+                 "EL53_toro","EL54_toro","EL55_toro","EL57_toro","EL59_toro",  
+                 "EL5_ochr" ,"EL60_toro","EL6_mega" ,"EL8_toro" ,"EL9_toro" ,"t_sanctus", rep("NA",37))
+# set up base tree, plot nodes
+tmp1 <- ggtree(beast, mrsd="2000-12-12") + 
+  theme_tree2() +
+  geom_text2(aes(subset=!isTip, label=node), hjust=-.3)
+
+# drop node labels
+tmp1 <- ggtree(beast, mrsd="2000-12-12") + 
+  theme_tree2()
+
+# add colors
+clr <- beast$label[1:38]
+clr[grepl("toro",clr)]<-"#443B84FF" 
+clr[grepl("mega",clr)]<-"#73D056FF"
+clr[grepl("ochr",clr)]<-"#20938CFF"
+clr[38] <- "black"
+
+# plot final tree
+e <- revts(tmp1) +
+  #geom_tiplab(align=TRUE, linetype='dashed', linesize=.3, color=clr) + 
+  # geom_text2(aes(subset=!isTip, label=node), hjust=-.3) +
+  geom_range("height_0.95_HPD", color='black', size=2, alpha=.5)  + 
+  xlim(-2500000,400000) +
+  theme(axis.text.x = element_text(size=15)) +
+  geom_text2(aes(label=round(as.numeric(posterior), 2), 
+                 subset=as.numeric(posterior)>.99, 
+                 x=branch), hjust=1.25,vjust=-0.5, size=5) +
+  geom_hilight(node=41, fill="#443B84FF") +
+  geom_hilight(node=74, fill="#73D056FF") +
+  geom_hilight(node=65, fill="#20938CFF")
+
+
+# prepare PC and map data
+sample_data <- read.csv("data/syma_spp_pcs.csv")
+attach(sample_data)
+sample_data$sp <- as.character(sample_data$sp)
+sample_data$sp[which(sample_data$ssp == "ochracea")] <- "ochracea"
+sample_data$sp <- as.factor(sample_data$sp)
+sp_means <- aggregate(PC1 ~ sp, data = sample_data, mean)
+
+# convex hull for PCA
+hull_tor <- sample_data[sample_data$sp=="torotoro",] %>%
+  slice(chull(PC1, PC2))
+hull_meg <- sample_data[sample_data$sp=="megarhyncha",] %>%
+  slice(chull(PC1, PC2))
+hull_ochr <- sample_data[sample_data$sp=="ochracea",] %>%
+  slice(chull(PC1, PC2))
+
+# pca
+b <- ggplot(data=sample_data,aes(x=PC1,y=PC2,fill=sp,color=sp)) + 
+  geom_point(aes(shape=sp)) +
+  scale_fill_manual(values = c("#73D056FF","#20938CFF","#443B84FF"),guide=FALSE)+
+  scale_color_manual(values = c("#73D056FF","#20938CFF","#443B84FF"), guide=FALSE)+
+  scale_shape_manual(values=c(22, 24, 21),guide=FALSE) +
+  theme_classic() +
+  xlab("Genotype PC1") +
+  ylab("Genotype PC2") +
+  geom_polygon(data = hull_tor, alpha = 0.5) +
+  geom_polygon(data = hull_meg, alpha = 0.5) +
+  geom_polygon(data = hull_ochr, alpha = 0.5) +
+  theme(legend.text=element_text(size=15),
+        axis.title = element_text(size=15),
+        axis.text = element_text(size=15),
+        legend.title=element_text(size=15))
+
+e + b
+```
+
+(Linck et al. 2020 *J. Evol. Biol*)  
+
+## Heterogeneous divergence across the genome
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+setwd("~/Dropbox/syma_speciation/")
+
+
+win.df <- read.csv("ignore/window_stats_chr.csv")[,-1]
+chr_labels <- read.csv("ignore/chr_labels.csv")[,-1]
+n <- ggplot(data=win.df,aes(x=row,y=value,col=chr))+
+  theme_bw()+
+  theme(legend.position="none",
+        axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.text.y=element_text(size=15),
+        strip.text = element_text(size=15),
+        panel.grid = element_blank(),
+        panel.grid.major.y=element_line(color="grey60",size=0.2),
+        panel.grid.minor.y=element_line(color="grey60",size=0.1),
+        axis.title.y = element_blank(),
+        axis.ticks.x=element_blank())+  
+  scale_y_continuous(breaks=seq(0,0.6,0.2),minor_breaks = NULL)+
+  scale_color_manual(values=rep(c("grey45","grey70"),length(unique(win.df$chr))/2+1))+
+  geom_point(data=subset(win.df,value>0.0),size=0.75,shape=21,alpha=0.3)+
+  geom_point(data=subset(win.df,chr==5),size=0.75,shape=21,alpha=0.7)+
+  geom_point(data=subset(win.df, outlier=="TRUE"),size=1,shape=21,col="red")+
+  geom_hline(data=subset(win.df, stat=="F[ST]"),aes(yintercept=0.4084545),linetype="dashed",lwd=0.25)+
+  geom_hline(data=subset(win.df, stat=="D[XY]"),aes(yintercept=0.17),linetype="dashed",lwd=0.25)+
+  geom_line(aes(y=rollmean),lwd=0.15,col="black")+
+  geom_segment(data=chr_labels,aes(x=start+250,xend=stop-250,y=-0.025,yend=-0.025,col=NA),col="black")+
+  #geom_vline(xintercept=c(103017,114851)) +
+  geom_text(data=chr_labels,aes(label=chr,x=mid,y=-0.1,col=NA),
+            col="black",size=3,angle=0) +
+  theme(strip.background = element_rect(colour="black", fill="grey100")) +
+  facet_grid(stat ~ ., labeller=label_parsed)
+n
+```
+
+## Absolute and relative divergence not correlated
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+outlier.df <- read.csv("~/Dropbox/syma_speciation/ignore/outlier_correlations.csv")[,-1]
+s <- ggplot(data=outlier.df,aes(x=dxy_meg_toro,y=Fst_meg_toro)) +
+  theme_classic()+
+  #scale_fill_distiller(palette = "BrBG",direction = -1,name="log(n. windows)",guide=FALSE)+
+  geom_point(data=subset(outlier.df,fst_outlier=="FALSE" & dxy_outlier=="FALSE" & both_outlier=="FALSE"),shape=21,aes(col="grey80"))+
+  geom_point(data=subset(outlier.df,fst_outlier_05=="TRUE"),shape=21,aes(col="grey60"))+
+  geom_point(data=subset(outlier.df,dxy_outlier_05=="TRUE"),shape=21,aes(col="grey60"))+
+  geom_point(data=subset(outlier.df,fst_outlier=="TRUE"),shape=21,aes(col="grey40"))+
+  geom_point(data=subset(outlier.df,dxy_outlier=="TRUE"),shape=21,aes(col="grey40"))+
+  #geom_point(data=subset(df2,both_outlier=="TRUE"),shape=21,aes(col="red")) +
+  geom_hline(aes(yintercept=quantile(outlier.df$Fst_meg_toro,0.995, na.rm = TRUE),linetype="dashed"),lwd=0.25)+
+  geom_hline(aes(yintercept=quantile(outlier.df$Fst_meg_toro,0.95, na.rm = TRUE),linetype="solid"),lwd=0.25)+
+  geom_vline(aes(xintercept=quantile(outlier.df$dxy_meg_toro,0.995, na.rm = TRUE),linetype="dashed"),lwd=0.25)+
+  geom_vline(aes(xintercept=quantile(outlier.df$dxy_meg_toro,0.95, na.rm = TRUE),linetype="solid"),lwd=0.25)+
+  xlab(expression(D[XY])) +
+  ylab(expression(F[ST])) +
+  #geom_smooth(method="lm",fill=NA,col="black",lwd=0.65) +
+  scale_color_manual(name = element_blank(), 
+                     values =c('grey40'='grey40','grey60'='grey60','grey80'='grey80','red'='red'), 
+                     labels = c('outlier at 0.005','outlier at 0.05','nonoutlier','joint outlier at 0.05')) +
+  scale_linetype_manual(name = element_blank(), 
+                        values=c("dashed","solid"),
+                        labels=c("outlier at 0.005","outlier at 0.05")) +
+  theme(legend.text=element_text(size=15),
+        axis.title = element_text(size=15),
+        axis.text = element_text(size=15),
+        legend.title=element_text(size=15))
+s
+```
+
+# We conclude: speciation in allopatry is more likely (but parapatric speciation is possible, and gene flow was involved)  
+
+## The specter of other variables  
+
+\begin{figure}  
+\includegraphics[width = 0.7\linewidth]{/Users/k14m234/Dropbox/andean_range_limits/figures/freeman_miller.png}  
+\end{figure}  
+
+(Freeman et al. 2022 *Science*) 
+
+## Why this is all a little unsatisfying (or motivating?)
+
+"However if many causes contribute to an observed pattern, none will be eliminated from consideration by a properly designed experiment...The objective of investigation in cases of this sort is not to determine the single cause of a pattern, as no such cause exists, but rather to assign relative importances to the contributions of, and interactions between, a number of processes, all known or reasonably suspected of operating to some degree" (Quinn & Dunham 1983 *Am. Nat.*)  
+
+## Resources 
+
+- slides and code: https://github.com/elinck/misc_talks
+- website: https://elinck.org/  
+- twitter: @ethanblinck  
+
+## References
+
+- McKnight et al. 2007. *PLoS Biology*, 5(10), e272.  
+- Terborgh 1971. *Ecology*, 52(1), 23-40.  
+- Linck et al. 2023. *Am. Nat.* 201(5), 741-754.  
+- Gassmann et al. 2019. *Annals of the New York Academy of Sciences*, 1450(1), 204-220.  
+- Projecto-Garcia et al. 2013. *PNAS*, 110(51), 20669-20674.  
+- Natarajan et al. 2016. *Science*, 354(6310), 336-339.  
+- Diamond 1972. *Avifauna of the Eastern Highlands of New Guinea*. 
+- Linck et al. 2020. *J. Evol. Biol.*, 33(11), 1643-1652.  
+- Losos & Glor 2003. *TREE*, 18(5), 220-227.  
+- Freeman et al. 2022. *Science*, 377(6604), 416-420.
+- Quinn & Dunham 1983. *The American Naturalist*, 122(5), 602-617.  
+
+## Thanks!  
+
+1) [Hb] sensitivity is correlated with range breadth
+
+\begin{figure}
+\includegraphics[width = 0.4\linewidth]{/Users/k14m234/Dropbox/misc_talks/images/andean_birds.png}
+\end{figure}  
+
+2) Adaptive Hb evolution is predictable but context dependent
+
+\begin{figure}
+\includegraphics[width = 0.1\linewidth]{/Users/k14m234/Dropbox/misc_talks/images/hemoglobin.png}
+\end{figure}  
+
+3) Parapatric speciation is unlikely, but elevational gradients help maintain species limits
+
+\begin{figure}
+\includegraphics[width = 0.15\linewidth]{/Users/k14m234/Dropbox/misc_talks/images/syma_vertical.png}
+\end{figure}  
+
+
